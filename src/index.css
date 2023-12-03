@@ -12,7 +12,9 @@
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 13px;
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
 }
 
 *::-webkit-scrollbar-track {
@@ -21,9 +23,9 @@
 
 *::-webkit-scrollbar-thumb {
   background-color: var(--secondary);
-  border-radius: 16px;
-  border: 3px solid var(--primary);
+  border-radius: 50px;
 }
+
 
 :root {
   --black-gradient: linear-gradient(

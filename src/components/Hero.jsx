@@ -31,11 +31,11 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-row justify-between items-center w-full"
         >
-          <h1 className="flex-1 font-poppins font-semibold ss:text-[72px] text-[52px] text-white ss:leading-[100.8px] leading-[75px]">
+          <h1 className="flex-1 ml-5 font-poppins font-semibold ss:text-[72px] text-[32px] text-white ss:leading-[100.8px] leading-[75px]">
             The Next <br className="sm:block hidden" />{" "}
             <span className="text-gradient">Generation</span>{" "}
           </h1>
-          <div className="ss:flex hidden md:mr-4 mr-0">
+          <div className="ss:flex hidden md:ml-4 mr-0">
             <GetStarted />
           </div>
         </motion.div>
@@ -44,7 +44,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={controls}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="font-poppins font-semibold ss:text-[68px] text-[52px] text-white ss:leading-[100.8px] leading-[75px] w-full"
+          className="font-poppins font-semibold ss:text-[68px] text-[32px] text-white ss:leading-[100.8px] leading-[75px] w-full"
         >
           Payment Method.
         </motion.h1>
