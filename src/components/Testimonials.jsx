@@ -1,27 +1,57 @@
+import { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
 import { feedback } from "../constants";
 import styles from "../style";
 import FeedbackCard from "./FeedbackCard";
+import { useInView } from "react-intersection-observer";
 
-const Testimonials = () => (
-  <section id="clients" className={`${styles.paddingY} ${styles.flexCenter} flex-col relative `}>
-    <div className="absolute z-[0] w-[60%] h-[60%] -right-[50%] rounded-full blue__gradient bottom-40" />
+const Testimonials = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: true });
 
-    <div className="w-full flex justify-between items-center md:flex-row flex-col sm:mb-16 mb-6 relative z-[1]">
-      <h2 className={styles.heading2}>
-        What People are <br className="sm:block hidden" /> saying about us
-      </h2>
-      <div className="w-full md:mt-0 mt-6">
-        <p className={`${styles.paragraph} text-left max-w-[450px]`}>
-          Everything you need to accept card payments and grow your business
-          anywhere on the planet.
-        </p>
+  useEffect(() => {
+    if (inView) {
+      controls.start({ opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeInOut" } });
+    }
+  }, [controls, inView]);
+
+  return (
+    <motion.section
+      ref={ref}
+      initial={{ opacity: 0, x: -50 }}
+      animate={controls}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+      id="clients"
+      className={`${styles.paddingY} ${styles.flexCenter} flex-col relative`}
+    >
+      <div className="absolute z-[0] w-[60%] h-[60%] -right-[50%] rounded-full blue__gradient bottom-40" />
+
+      <div className="w-full flex justify-between items-center md:flex-row flex-col sm:mb-16 mb-6 relative z-[1]">
+        <h2 className={styles.heading2}>
+          What People are <br className="sm:block hidden" /> saying about us
+        </h2>
+        <div className="w-full md:mt-0 mt-6">
+          <p className={`${styles.paragraph} text-left max-w-[450px]`}>
+            Everything you need to accept card payments and grow your business
+            anywhere on the planet.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div className="flex flex-wrap sm:justify-start justify-center w-full feedback-container relative z-[1]">
-      {feedback.map((card) => <FeedbackCard key={card.id} {...card} />)}
-    </div>
-  </section>
-);
+      <div className="flex flex-wrap sm:justify-start justify-center w-full feedback-container relative z-[1]">
+        {feedback.map((card, index) => (
+          <motion.div
+            key={card.id}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 * index }}
+          >
+            <FeedbackCard {...card} />
+          </motion.div>
+        ))}
+      </div>
+    </motion.section>
+  );
+};
 
 export default Testimonials;
